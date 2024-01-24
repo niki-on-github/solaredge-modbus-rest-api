@@ -53,14 +53,7 @@ if __name__ == "__main__":
 
         inverter_data = {
             "measurement": "inverter",
-            "tags": {
-                "c_manufacturer": values["c_manufacturer"],
-                "c_model": values["c_model"],
-                "c_version": values["c_version"],
-                "c_serialnumber": values["c_serialnumber"],
-                "c_deviceaddress": values["c_deviceaddress"],
-                "c_sunspec_did": values["c_sunspec_did"]
-            },
+            "tags": {},
             "time": current_time,
             "fields": {}
         }
@@ -84,15 +77,7 @@ if __name__ == "__main__":
 
             meter_data = {
                 "measurement": "meter",
-                "tags": {
-                    "c_manufacturer": meter_values["c_manufacturer"],
-                    "c_model": meter_values["c_model"],
-                    "c_option": meter_values["c_option"],
-                    "c_version": meter_values["c_version"],
-                    "c_serialnumber": meter_values["c_serialnumber"],
-                    "c_deviceaddress": meter_values["c_deviceaddress"],
-                    "c_sunspec_did": meter_values["c_sunspec_did"]
-                },
+                "tags": {},
                 "time": current_time,
                 "fields": {}
             }
@@ -119,14 +104,7 @@ if __name__ == "__main__":
 
             battery_data = {
                 "measurement": "battery",
-                "tags": {
-                    "c_manufacturer": battery_values["c_manufacturer"],
-                    "c_model": battery_values["c_model"],
-                    "c_version": battery_values["c_version"],
-                    "c_serialnumber": battery_values["c_serialnumber"],
-                    "c_deviceaddress": battery_values["c_deviceaddress"],
-                    "c_sunspec_did": battery_values["c_sunspec_did"]
-                },
+                "tags": {},
                 "time": current_time,
                 "fields": {}
             }
