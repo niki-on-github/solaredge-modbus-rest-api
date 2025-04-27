@@ -2,7 +2,7 @@
 
 from influxdb_client import InfluxDBClient
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -47,6 +47,27 @@ def fetch_tables():
 @app.route('/', methods=['GET'])
 def get_values():
     return jsonify(fetch_tables())
+
+@app.route('/surplus', methods=['GET'])
+def get_surplus():
+    capacity = float(request.args.get('capacity', "0"))
+    values = fetch_tables()
+
+    export = values["meter"]["fields"]["power"]
+    if export - capacity < 20:
+        return {
+            "surplus": False,
+            "reason": f"No overcapacity (export={export}, required capacity={capacity})"
+        }
+
+    battery = values["battery"]["fields"]["soe"]
+    if battery < 98:
+        return {
+            "surplus": False,
+            "reason": f"Battery is not Full (battery={battery}%)"
+        }
+
+    return { "surplus": True }
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
